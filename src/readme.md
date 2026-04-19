@@ -325,9 +325,7 @@ src/
 │   ├── outputEvent.rs         — OutputEvent enum
 │   └── rejectReason.rs        — RejectReason enum
 └── util/
-└── time.rs                — now_ns() monotonic timestamp
-
----
+    └── time.rs                — now_ns() monotonic timestamp---
 
 ## Running Tests
 
