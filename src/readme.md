@@ -80,6 +80,7 @@ no mutexes, no channels.
 ---
 
 ## Order Lifecycle
+```text
 Client wire bytes
 │
 ▼
@@ -97,6 +98,7 @@ Output Ring Buffer
 │
 ▼
 Output Consumer
+```
 
 ### Supported commands
 
