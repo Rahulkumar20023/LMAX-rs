@@ -8,6 +8,7 @@ engine as the business logic processor.
 ---
 
 ## Architecture
+```text
 Input Ring Buffer
                     ┌─────────────────────────────────┐
                     │         Ring Slots [0..N]        │
@@ -40,6 +41,7 @@ Input Ring Buffer
                                   Output Consumer
                                   (drains slots,
                                    advances gating seq)
+```
 > `*` Replicator and Journal are stubbed — crash recovery and replication
 > are planned for a future layer.
 
