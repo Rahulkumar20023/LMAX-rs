@@ -291,6 +291,7 @@ matched immediately, reducing average matching sweep length.
 ---
 
 ## Project Structure
+```text
 src/
 ├── main.rs                    — pipeline wiring and all tests
 ├── ring_buffer/
@@ -328,7 +329,7 @@ src/
 │   └── rejectReason.rs        — RejectReason enum
 └── util/
     └── time.rs                — now_ns() monotonic timestamp---
-
+```
 ## Running Tests
 
 ```bash
