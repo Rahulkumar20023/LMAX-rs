@@ -182,50 +182,61 @@ All benchmarks run on:
 
 100,000 limit orders, all buys at prices 100–149.
 
-Throughput:     698,566 ops/sec
-Mean latency:   155 ns
-p50:            100 ns
-p90:            200 ns
-p99:            200 ns
-p999:           400 ns
-Max:            3,564 µs  (OS scheduler spike)
+| Metric        | Value        |
+|--------------|-------------|
+| Throughput   | 698,566 ops/sec |
+| Mean latency | 155 ns      |
+| p50          | 100 ns      |
+| p90          | 200 ns      |
+| p99          | 200 ns      |
+| p999         | 400 ns      |
+| Max          | 3,564 µs (OS scheduler spike) |
 
-Latency distribution:
-<100 ns:    11.43%
-<500 ns:    99.94%
-<1 µs:      99.97%
-<100 µs:   100.00%
+
+####Latency distribution:
+| Range     | Percentage |
+|----------|-----------|
+| <100 ns  | 11.43%    |
+| <500 ns  | 99.94%    |
+| <1 µs    | 99.97%    |
+| <100 µs  | 100.00%   |
+---
 
 ### Mixed workload benchmark
 
 70% passive limit orders, 20% aggressive crossing orders, 10% cancels.
 
-Throughput:     1,078,061 ops/sec
-Mean latency:   63 ns
-p50:            100 ns
-p90:            100 ns
-p99:            100 ns
-p999:           200 ns
-Max:            59 µs
+| Metric        | Value        |
+|--------------|-------------|
+| Throughput   | 1,078,061 ops/sec |
+| Mean latency | 63 ns       |
+| p50          | 100 ns      |
+| p90          | 100 ns      |
+| p99          | 100 ns      |
+| p999         | 200 ns      |
+| Max          | 59 µs       |
 
-Latency distribution:
-<100 ns:    38.57%
-<500 ns:    99.98%
-<1 µs:      99.99%
-<100 µs:   100.00%
+####Latency distribution:
+| Range     | Percentage |
+|----------|-----------|
+| <100 ns  | 38.57%    |
+| <500 ns  | 99.98%    |
+| <1 µs    | 99.99%    |
+| <100 µs  | 100.00%   |
+
+---
 
 ### Burst load — 5 × 100,000 messages
 
 Same 70/20/10 mixed workload, 5 consecutive bursts.
-Burst    Throughput      Mean    p50    p90    p99    p999      Max
-──────────────────────────────────────────────────────────────────
-1        1,288,348/s    173ns  100ns  100ns  100ns   200ns   12.5ms
-2        1,239,171/s    211ns  100ns  100ns  100ns   100ns   14.9ms
-3        1,214,600/s    201ns  100ns  100ns  100ns   100ns   14.5ms
-4          918,684/s    338ns  100ns  100ns  100ns   100ns   13.1ms
-5          568,813/s    810ns  100ns  100ns  100ns   100ns   47.5ms
-──────────────────────────────────────────────────────────────────
-TOTAL                   347ns  100ns  100ns  100ns   100ns   47.5ms
+| Burst | Throughput (ops/sec) | Mean | p50 | p90 | p99 | p999 | Max |
+|------|----------------------|------|-----|-----|-----|------|------|
+| 1 | 1,288,348 | 173 ns | 100 ns | 100 ns | 100 ns | 200 ns | 12.5 ms |
+| 2 | 1,239,171 | 211 ns | 100 ns | 100 ns | 100 ns | 100 ns | 14.9 ms |
+| 3 | 1,214,600 | 201 ns | 100 ns | 100 ns | 100 ns | 100 ns | 14.5 ms |
+| 4 | 918,684   | 338 ns | 100 ns | 100 ns | 100 ns | 100 ns | 13.1 ms |
+| 5 | 568,813   | 810 ns | 100 ns | 100 ns | 100 ns | 100 ns | 47.5 ms |
+| **TOTAL** | — | **347 ns** | 100 ns | 100 ns | 100 ns | 100 ns | 47.5 ms |
 
 p50, p90, p99, and p999 are completely flat across all 5 bursts.
 Throughput degradation in bursts 4–5 is a benchmark artifact — each
@@ -234,20 +245,19 @@ and compete for CPU cores. In a real deployment with a single
 long-running pipeline this degradation does not occur.
 
 ### Latency over time — 10 batches of 10,000
-Batch     Mean    p50    p90    p99    p999      Max
-────────────────────────────────────────────────────
-1         587ns     0ns  100ns  100ns   200ns   5.3ms  ← cold start
-2          54ns   100ns  100ns  100ns   200ns   2.3µs
-3          44ns     0ns  100ns  100ns   200ns   400ns
-4          61ns   100ns  100ns  100ns   300ns   4.4µs
-5          64ns   100ns  100ns  100ns   300ns  18.0µs
-6          67ns   100ns  100ns  300ns   800ns  14.0µs
-7          58ns   100ns  100ns  100ns   200ns   700ns
-8          56ns   100ns  100ns  100ns   100ns   400ns
-9          54ns   100ns  100ns  100ns   200ns   500ns
-10         53ns   100ns  100ns  100ns   100ns   200ns
-────────────────────────────────────────────────────
-TOTAL     110ns   100ns  100ns  100ns   400ns   5.3ms
+| Batch | Mean | p50 | p90 | p99 | p999 | Max |
+|------|------|-----|-----|-----|------|------|
+| 1 | 587 ns | 0 ns | 100 ns | 100 ns | 200 ns | 5.3 ms |
+| 2 | 54 ns  | 100 ns | 100 ns | 100 ns | 200 ns | 2.3 µs |
+| 3 | 44 ns  | 0 ns | 100 ns | 100 ns | 200 ns | 400 ns |
+| 4 | 61 ns  | 100 ns | 100 ns | 100 ns | 300 ns | 4.4 µs |
+| 5 | 64 ns  | 100 ns | 100 ns | 100 ns | 300 ns | 18.0 µs |
+| 6 | 67 ns  | 100 ns | 100 ns | 300 ns | 800 ns | 14.0 µs |
+| 7 | 58 ns  | 100 ns | 100 ns | 100 ns | 200 ns | 700 ns |
+| 8 | 56 ns  | 100 ns | 100 ns | 100 ns | 100 ns | 400 ns |
+| 9 | 54 ns  | 100 ns | 100 ns | 100 ns | 200 ns | 500 ns |
+| 10| 53 ns  | 100 ns | 100 ns | 100 ns | 100 ns | 200 ns |
+| **TOTAL** | **110 ns** | 100 ns | 100 ns | 100 ns | 400 ns | 5.3 ms |
 
 p99 is flat at 100ns from batch 2 onwards. Batch 1 spike is cold
 start — caches and OS scheduler settling.
